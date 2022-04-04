@@ -22,3 +22,4 @@ int	ft_strlen(char *s)
     	i++;
     return (i);
 }
+//add libft would be a great idea i guess

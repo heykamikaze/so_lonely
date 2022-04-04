@@ -6,7 +6,7 @@
 /*   By: nbenjami <nbenjami@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 20:38:37 by nbenjami          #+#    #+#             */
-/*   Updated: 2021/12/14 17:55:58 by nbenjami         ###   ########.fr       */
+/*   Updated: 2022/04/05 00:16:56 by nbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	if (!s2)
 		return (NULL);
-	s3 = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	s3 = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));//sega here
+	write(1, "hello", 5);
 	if (!s3)
 		return (NULL);
 	i = 0;
@@ -80,7 +81,6 @@ char	*ft_start(int fd, char *remains)
 {
 	int		reader;
 	char	*buffer;
-
 	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (NULL);
@@ -95,6 +95,7 @@ char	*ft_start(int fd, char *remains)
 		}
 		buffer[reader] = '\0';
 		remains = ft_strjoin(remains, buffer);
+		write(1, "hello", 5);
 		if (!remains)
 		{
 			free(buffer);

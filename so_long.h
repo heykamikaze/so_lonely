@@ -8,7 +8,7 @@
 # include <limits.h>
 # include <unistd.h>
 # include <stdio.h>
-# include "gnl/get_next_line.h"
+# include "get_next_line.h"
 # define MAX "./pics/threat.xpm"
 
 typedef struct s_img {
@@ -41,5 +41,6 @@ int	ft_line_ok(char *line, t_struct *game);
 void	create_box(int type, int *counter, int *item);
 int	*get_map_line(char *line, t_struct *game, int c);
 int	ft_map_check(char *map, t_struct *game);
+void	distribution(t_struct *game);
 
 #endif

@@ -56,23 +56,25 @@ int main(int argc, char **argv)
 	// 	return (1);
 	// game->win = mlx_new_window(game->mlx, game->map_width * 50,
 	// 		game->map_height * 50, "heykamikaze");
-        t_struct	*game;
+       
 	// void	*mlx_win;
+	t_struct	*game;
+
+	// ft_putstr_fd("Egvor", 2);
 	if (argc != 2)
 	{
-		ft_putstr_fd("Egor", 2);
+		// ft_putstr_fd("Egor", 2);
         exit(EXIT_FAILURE);
 	}
-	ft_putstr_fd("Egvor", 2);
 	game = malloc(sizeof(t_struct));	
-	ft_putstr_fd("Egr", 2);
+	// ft_putstr_fd("Egr", 2);
     if (ft_map_check(argv[1], game))
 		return (1);
-	printf("%d", game->map_width);
-	ft_putstr_fd("lala", 2);
-	// game->mlx = mlx_init();
-	// game->win = mlx_new_window(game->mlx, game->map_width,
-	// 		game->map_height, "heykamikaze");
+	printf("%d", game->map_height);
+	// ft_putstr_fd("lala", 2);
 	distribution(game);
+	game->mlx = mlx_init();
+	game->win = mlx_new_window(game->mlx, game->map_width,
+			game->map_height, "heykamikaze");
 	mlx_loop(game->mlx);
 }

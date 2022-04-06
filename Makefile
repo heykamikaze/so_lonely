@@ -2,12 +2,14 @@ NAME = so_long
 
 HEADER = so_long.h
 
-SRC =	main.c\
+SRC =	ft_main.c\
 		utils_lib.c\
 		map_check.c\
-		get_next_line.c\
-		get_next_line_utils.c\
 		init.c\
+
+LIBFT = ./libft/libft.a
+
+LIB_BINARY = -L ./libft -lft 
 
 MLX = ./mlx/libmlx.a
 
@@ -24,7 +26,10 @@ RM		= rm -f
 all:		${NAME}
 
 ${NAME}:	${LIBFT} ${MLX} ${OBJ} ${HEADER}
-			${CC} ${cFLAGS} ${MFLAGS} ${OBJ} ${LIBFT} ${MLX} -o ${NAME}
+			${CC} ${CFLAGS} ${MFLAGS} ${OBJ} ${MLX} $(LIB_BINARY) -o $(NAME)
+
+$(LIBFT):
+		make -C ./libft/
 
 ${MLX}:		
 			make -C ./mlx
@@ -35,10 +40,12 @@ ${MLX}:
 clean:	
 			${RM} ${OBJ}
 			make -C ./mlx clean
+			make -C ./libft/ clean
 
 fclean:		clean
 			${RM} ${NAME}
 			make  -C ./mlx fclean
+			make -C ./libft/ fclean
 
 re:			fclean all
 

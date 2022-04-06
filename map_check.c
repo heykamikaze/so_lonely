@@ -1,4 +1,4 @@
-// #include "so_long.h"
+#include "so_long.h"
 
 
 // int	ft_height_check(char *map)
@@ -97,31 +97,6 @@
 #include "so_long.h"
 
 
-int	ft_height_check(char *map)
-{
-	int		fd;
-	int		height;
-	char	*line;
-
-	height = 0;
-	fd = open(map, O_RDONLY);
-	if (fd == -1)
-		ft_error();
-	line = malloc()
-	while (1)
-	{
-		line = get_next_line(fd);
-		ft_putstr_fd("karta", 1);
-		if (!line)
-			break ;
-		height += 1;
-		free(line);
-	}
-	close(fd);
-	printf("%d", height);
-	return (height);
-}
-
 int	ft_line_ok(char *line, t_struct *game)
 {
 	int	len;
@@ -146,6 +121,19 @@ int	ft_line_ok(char *line, t_struct *game)
 	return (0);
 }
 
+void	ft_check_name(char *map)
+{
+	int name;
+	// int position;
+
+	name = ft_strlen(map);
+	// ft_putstr_fd("map name error\n", 1);
+	if (map[name - 4] != '.' || map[name - 3] != 'b' || map[name - 2] != 'e' || map[name - 1] != 'r' || map[name] != '\0')
+		{
+			ft_putstr_fd("map name error\n", 1);
+			ft_error();
+		}
+}
 // int	*get_map_line(char *line, t_struct *game, int c)
 // {
 // 	int		i;
@@ -158,36 +146,104 @@ int	ft_line_ok(char *line, t_struct *game)
 // 	while (++i < game->map_width)
 // 	{
 // 		if (line[i] == '0')
-// 			create_box(game->floor, 0, &map_line[i]);
+// 			create(game->floor, 0, &map_line[i]);
 // 		if (line[i] == '1')
-// 			create_box(game->wall, 0, &map_line[i]);
+// 			create(game->wall, 0, &map_line[i]);
 // 	}
 // 	return (map_line);
 // }
 
+
+char *ft_collect_map(int fd, char *line)
+{
+	int rd;
+	char readed[BUFFER_SIZE + 1];
+	rd = 1;
+	while (rd > 0)
+	{
+		rd = read(fd, readed, BUFFER_SIZE);
+		if (rd == -1)
+		{
+			if (line)
+				free (line);
+			return(NULL);
+		}
+		readed[rd] = '\0';
+		line = ft_strjoin(line, readed);
+		if (!line)
+			return(NULL);
+	}
+	return (line);
+}
+
+int	ft_height_check(char *line, t_struct *game)
+{
+	int i;
+	int j;
+	char *checked;
+
+	i = 0;
+	j = 0;
+	checked = ft_strtrim(line, "\n");
+	free(line);
+	while (checked[i])
+	{
+		if (checked[i] == '\n')
+			j++;
+		i++;
+	}
+	game->map = ft_split(checked, '\n');
+	i = 0;
+	while (game->map[i])
+		i++;
+	if (i != j + 1)
+		ft_error();
+	game->map_height = j;
+	return(1);
+}
+
+int	ft_width_check(t_struct *game)
+{
+	size_t	check;
+	int i;
+
+	i = 0;
+	check = ft_strlen(game->map[0]);
+	while (game->map[i])
+	{
+		if (check != ft_strlen(game->map[i++]))
+			ft_error();
+	}
+	return (check);
+}
+
 int	ft_map_check(char *map, t_struct *game)
 {
-	char	*line;
 	int		i;
-	ft_putstr_fd(map, 1);
-	game->map_height = ft_height_check(map);
-	game->map = malloc(sizeof(int *) * game->map_height);
-	if (!game->map || (open(map, O_RDONLY) < 0))
-	{
-		ft_putstr_fd("lala", 2);
-		ft_error();
-	}
+	int fd;
+	char *line;
+
+	line = NULL;
 	i = -1;
-	while (++i < game->map_height)
-	{
-		line = get_next_line(open(map, O_RDONLY));
-		ft_putstr_fd("gdgds", 2);
-		if (!line)
-			ft_error();
-		if (ft_line_ok(line, game))
-			ft_error();
-		// game->map[i] = get_map_line(line, game, i);
-		free(line);
-	}
+	fd = open(map, O_RDONLY);
+	ft_check_name(map);
+	line = ft_collect_map(fd, line);
+	ft_height_check(line, game);
+	game->map_width = ft_width_check(game);
+	while (game->map[++i])
+		write(1, game->map[i], ft_strlen(game->map[i]));
 	return (0);
 }
+
+// int	ft_map_check(char *map, t_struct *game)
+// {
+// 	char	*line;
+// 	int		i;
+// 	int fd;
+// 	ft_putstr_fd(map, 1);
+// 	ft_check_name(map);
+// 	fd = open(map, O_RDONLY);
+// 	if (fd < 0)
+// 		ft_error();
+// 	ft_collect_map(fd, line);
+	

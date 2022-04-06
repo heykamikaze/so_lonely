@@ -8,8 +8,9 @@
 # include <limits.h>
 # include <unistd.h>
 # include <stdio.h>
-# include "get_next_line.h"
+# include "libft/libft.h"
 # define MAX "./pics/threat.xpm"
+# define BUFFER_SIZE 1
 
 typedef struct s_img {
 	void	*img;
@@ -33,14 +34,16 @@ typedef struct s_struct{
 
 int main(int argc, char **argv);
 char	*get_next_line(int fd);
-int	ft_height_check(char *map);
+int	ft_height_check(char *map, t_struct *game);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_error(void);
-int	ft_strlen(char *s);
 int	ft_line_ok(char *line, t_struct *game);
 void	create_box(int type, int *counter, int *item);
 int	*get_map_line(char *line, t_struct *game, int c);
 int	ft_map_check(char *map, t_struct *game);
 void	distribution(t_struct *game);
+void	ft_check_name(char *map);
+char *ft_collect_map(int fd, char *line);
+int	ft_width_check(t_struct *game);
 
 #endif

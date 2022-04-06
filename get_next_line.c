@@ -6,39 +6,31 @@
 /*   By: nbenjami <nbenjami@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 20:38:37 by nbenjami          #+#    #+#             */
-/*   Updated: 2022/04/05 00:16:56 by nbenjami         ###   ########.fr       */
+/*   Updated: 2022/04/06 20:11:08 by nbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*s3;
-	int		i;
-	int		j;
+	size_t	s1_len;
+	size_t	s2_len;
 
-	if (!s2)
-		return (NULL);
-	s3 = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));//sega here
-	write(1, "hello", 5);
-	if (!s3)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (s1 && s1[i])
+	if (s1 && s2)
 	{
-		s3[i] = s1[i];
-		i++;
+		s1_len = ft_strlen(s1);
+		s2_len = ft_strlen(s2);
+		s3 = (char *)malloc(s1_len + s2_len + 1);
+		if (s3 == NULL)
+			return (NULL);
+		ft_strlcpy(s3, s1, s1_len + 1);
+		ft_strlcat(s3, s2, (s1_len + s2_len + 1));
+		return (s3);
 	}
-	while (s2[j])
-		s3[i++] = s2[j++];
-	s3[i] = '\0';
-	if (s1)
-		free (s1);
-	return (s3);
+	return (NULL);
 }
-
 char	*ft_get_line(char *remains)
 {
 	char	*before_n;
@@ -94,8 +86,9 @@ char	*ft_start(int fd, char *remains)
 			return (NULL);
 		}
 		buffer[reader] = '\0';
+		// write(1, "sega", 5);
 		remains = ft_strjoin(remains, buffer);
-		write(1, "hello", 5);
+		// write(1, "hello", 5);
 		if (!remains)
 		{
 			free(buffer);

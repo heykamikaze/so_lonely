@@ -44,6 +44,13 @@
 // 	mlx_loop(mlx);
 // }
 
+int	ft_exit(char *str)
+{
+	if (!str)
+		exit(1);
+	return (1);
+}
+
 int main(int argc, char **argv)
 {
     // t_struct	*game;
@@ -70,11 +77,12 @@ int main(int argc, char **argv)
 	// ft_putstr_fd("Egr", 2);
     if (ft_map_check(argv[1], game))
 		return (1);
-	printf("%d", game->map_height);
 	// ft_putstr_fd("lala", 2);
-	distribution(game);
 	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, game->map_width,
-			game->map_height, "heykamikaze");
+	distribution(game);
+	game->win = mlx_new_window(game->mlx, game->map_width * 64,
+			game->map_height * 64, "heykamikaze");
+	place_pic(game);
+	mlx_hook(game->win, 17, 0, ft_exit, NULL);
 	mlx_loop(game->mlx);
 }

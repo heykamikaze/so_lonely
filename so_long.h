@@ -14,8 +14,6 @@
 
 typedef struct s_img {
 	void	*img;
-	int		x;
-	int		y;
 	char	*path;
 	int		width;
 	int		height;
@@ -30,6 +28,8 @@ typedef struct s_struct{
 	int		map_width;
     t_img	wall;
 	t_img	floor;
+	t_img	player;
+	t_img	exit;
 }		t_struct;
 
 int main(int argc, char **argv);
@@ -45,5 +45,7 @@ void	distribution(t_struct *game);
 void	ft_check_name(char *map);
 char *ft_collect_map(int fd, char *line);
 int	ft_width_check(t_struct *game);
+int	ft_exit(char *str);
+void place_pic(t_struct *game);
 
 #endif

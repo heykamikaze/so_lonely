@@ -198,7 +198,7 @@ int	ft_height_check(char *line, t_struct *game)
 		i++;
 	if (i != j + 1)
 		ft_error();
-	game->map_height = j;
+	game->map_height = j + 1;
 	return(1);
 }
 
@@ -230,8 +230,8 @@ int	ft_map_check(char *map, t_struct *game)
 	line = ft_collect_map(fd, line);
 	ft_height_check(line, game);
 	game->map_width = ft_width_check(game);
-	while (game->map[++i])
-		write(1, game->map[i], ft_strlen(game->map[i]));
+	// while (game->map[++i])
+	// 	write(1, game->map[i], ft_strlen(game->map[i]));
 	return (0);
 }
 

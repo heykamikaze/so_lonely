@@ -75,8 +75,7 @@ int main(int argc, char **argv)
 	}
 	game = malloc(sizeof(t_struct));	
 	// ft_putstr_fd("Egr", 2);
-    if (ft_map_check(argv[1], game))
-		return (1);
+    ft_map_check(argv[1], game);
 	// ft_putstr_fd("lala", 2);
 	game->mlx = mlx_init();
 	distribution(game);
@@ -84,5 +83,6 @@ int main(int argc, char **argv)
 			game->map_height * 64, "heykamikaze");
 	place_pic(game);
 	mlx_hook(game->win, 17, 0, ft_exit, NULL);
+	mlx_hook(game->win, 2, 1L<<0, check_key, game);
 	mlx_loop(game->mlx);
 }

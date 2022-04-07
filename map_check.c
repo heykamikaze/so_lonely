@@ -97,7 +97,7 @@
 #include "so_long.h"
 
 
-int	ft_line_ok(char *line, t_struct *game)
+int	ft_line_ok(char *line, t_struct *game)//check C E P count collectables, save in the struct + save player position 
 {
 	int	len;
 	int	i;
@@ -133,6 +133,33 @@ void	ft_check_name(char *map)
 			ft_putstr_fd("map name error\n", 1);
 			ft_error();
 		}
+}
+
+void	check_player(t_struct *game)//include in map check
+{
+	int i;
+	int j;
+	int	count_p;
+	count_p = 0;
+	i = 0;
+	while (game->map[i])
+	{
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (game->map[i][j] == 'P')
+			{
+				game->p_x = i;
+				game->p_y = j;
+				count_p++;
+			}
+			j++;
+		}
+		i++;
+	}
+	printf("%d, %d", game->p_x, game->p_y);
+	if (count_p != 1)
+		exit(1);
 }
 // int	*get_map_line(char *line, t_struct *game, int c)
 // {
@@ -230,6 +257,7 @@ int	ft_map_check(char *map, t_struct *game)
 	line = ft_collect_map(fd, line);
 	ft_height_check(line, game);
 	game->map_width = ft_width_check(game);
+	check_player(game);
 	// while (game->map[++i])
 	// 	write(1, game->map[i], ft_strlen(game->map[i]));
 	return (0);

@@ -11,6 +11,11 @@
 # include "libft/libft.h"
 # define MAX "./pics/threat.xpm"
 # define BUFFER_SIZE 1
+# define D 2
+# define A 0
+# define W 13
+# define S 1
+# define ESC 53
 
 typedef struct s_img {
 	void	*img;
@@ -26,10 +31,14 @@ typedef struct s_struct{
     int		**map_i;
     int		map_height;
 	int		map_width;
+	int		col_count;
+	int		p_y;
+	int		p_x;
     t_img	wall;
 	t_img	floor;
 	t_img	player;
 	t_img	exit;
+	t_img	col;
 }		t_struct;
 
 int main(int argc, char **argv);
@@ -47,5 +56,8 @@ char *ft_collect_map(int fd, char *line);
 int	ft_width_check(t_struct *game);
 int	ft_exit(char *str);
 void place_pic(t_struct *game);
+int	check_key(int key, t_struct *game);
+void	check_player(t_struct *game);
+void move(t_struct *game, int d_x, int d_y);
 
 #endif

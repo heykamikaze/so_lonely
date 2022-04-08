@@ -34,6 +34,7 @@ typedef struct s_struct{
 	int		col_count;
 	int		p_y;
 	int		p_x;
+	int	steps;
     t_img	wall;
 	t_img	floor;
 	t_img	player;
@@ -46,7 +47,7 @@ char	*get_next_line(int fd);
 int	ft_height_check(char *map, t_struct *game);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_error(void);
-int	ft_line_ok(char *line, t_struct *game);
+int	ft_line_ok(char *line);
 void	create_box(int type, int *counter, int *item);
 int	*get_map_line(char *line, t_struct *game, int c);
 int	ft_map_check(char *map, t_struct *game);

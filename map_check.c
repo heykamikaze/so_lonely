@@ -97,7 +97,7 @@
 #include "so_long.h"
 
 
-int	ft_line_ok(char *line, t_struct *game)//check C E P count collectables, save in the struct + save player position 
+int	ft_line_ok(char *line)//check C E P count collectables
 {
 	int	len;
 	int	i;
@@ -108,14 +108,13 @@ int	ft_line_ok(char *line, t_struct *game)//check C E P count collectables, save
 		line[len - 1] = '\0';
 		len--;
 	}
-	game->map_width = len;
 	i = -1;
 	while (++i < len)
 	{
 		if (i == 0 || len - i == 1)
 			if (line[i] != 49)
 				return (1);
-		if (line[i] != '0' && line[i] != '1')
+		if (line[i] != '0' && line[i] != '1' && line[i] != 'C' && line[i] != 'P' && line[i] != 'E')
 			return (1);
 	}
 	return (0);
@@ -149,37 +148,20 @@ void	check_player(t_struct *game)//include in map check
 		{
 			if (game->map[i][j] == 'P')
 			{
-				game->p_x = i;
-				game->p_y = j;
+				game->p_x = j;
+				game->p_y = i;
 				count_p++;
 			}
+			if (game->map[i][j] == 'C')
+				game->col_count++;
 			j++;
 		}
 		i++;
 	}
-	printf("%d, %d", game->p_x, game->p_y);
+	// printf("%d, %d", game->p_x, game->p_y);
 	if (count_p != 1)
-		exit(1);
+		ft_error();
 }
-// int	*get_map_line(char *line, t_struct *game, int c)
-// {
-// 	int		i;
-// 	int		*map_line;
-
-// 	i = -1;
-// 	map_line = malloc(sizeof(int) * game->map_width);
-// 	if (!map_line)
-// 		ft_error();
-// 	while (++i < game->map_width)
-// 	{
-// 		if (line[i] == '0')
-// 			create(game->floor, 0, &map_line[i]);
-// 		if (line[i] == '1')
-// 			create(game->wall, 0, &map_line[i]);
-// 	}
-// 	return (map_line);
-// }
-
 
 char *ft_collect_map(int fd, char *line)
 {
@@ -250,6 +232,7 @@ int	ft_map_check(char *map, t_struct *game)
 	int fd;
 	char *line;
 
+	game->col_count = 0;
 	line = NULL;
 	i = -1;
 	fd = open(map, O_RDONLY);
@@ -258,7 +241,11 @@ int	ft_map_check(char *map, t_struct *game)
 	ft_height_check(line, game);
 	game->map_width = ft_width_check(game);
 	check_player(game);
-	// while (game->map[++i])
+	while (game->map[++i])
+		{
+			if (ft_line_ok(game->map[i]) == 1)
+			ft_error();
+		}
 	// 	write(1, game->map[i], ft_strlen(game->map[i]));
 	return (0);
 }

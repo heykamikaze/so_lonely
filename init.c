@@ -17,13 +17,13 @@ void	distribution(t_struct *game)
 	game->exit.path, &game->exit.width, &game->exit.height);
 	game->col.img = mlx_xpm_file_to_image(game->mlx, \
 	game->col.path, &game->col.width, &game->col.height);
+	game->steps = 0;
 }
 
 void place_pic(t_struct *game)
 {
 	int y;
 	int x;
-	
 	y = 0;
 	while (game->map[y]) 
 	{
@@ -33,7 +33,6 @@ void place_pic(t_struct *game)
 			mlx_put_image_to_window(game->mlx, game->win, game->floor.img, x * 64, y * 64);
 			if (game->map[y][x] == '1')
 				mlx_put_image_to_window(game->mlx, game->win, game->wall.img, x * 64, y * 64);
-			// if (game->map[y][x] == '0')
 			if (game->map[y][x] == 'P')
 				mlx_put_image_to_window(game->mlx, game->win, game->player.img, x * 64, y * 64);
 			if (game->map[y][x] == 'E')
@@ -48,34 +47,54 @@ void place_pic(t_struct *game)
 
 int	check_key(int key, t_struct *game)
 {
+	char *steps_str;
 	if (key == D)
-		move(game, 1, 0);
+		{
+			move(game, 1, 0);
+			game->steps++;
+		}
 	if (key == S)
-		move(game, 0, 1);
+		{
+			move(game, 0, 1);
+			game->steps++;
+		}
 	if (key == A)
-		move(game, -1, 0);
+		{
+			move(game, -1, 0);
+			game->steps++;
+		}
 	if (key == W)
-		move(game, 0, -1);
+		{
+			move(game, 0, -1);
+			game->steps++;
+		}
 	if (key == ESC)
 		exit(1);
+	steps_str = ft_itoa(game->steps);
+	mlx_string_put(game->mlx, game->win, 65, 65, 0x00FF0000, steps_str);
+	free(steps_str);
 	return(1);
 }
 
 void move(t_struct *game, int d_x, int d_y)
 {
+	// char *steps_str;
+	
 	if (game->map[game->p_y + d_y][game->p_x + d_x] != '1')
 	{
-	// 	if (game->map[game->p_y + d_y][game->p_x + d_x] == 'E' && game->col_count == 0)
-	// 		exit(1);
-		// else 
-		if (game->map[game->p_y + d_y][game->p_x + d_x] == 'E')
+		if (game->map[game->p_y + d_y][game->p_x + d_x] == 'E' && game->col_count == 0)
+			exit(1);
+		else if (game->map[game->p_y + d_y][game->p_x + d_x] == 'E')
 			return ;
-		// if (game->map[game->p_y + d_y][game->p_x + d_x] == 'C')
-			// game->col_count--;
+		if (game->map[game->p_y + d_y][game->p_x + d_x] == 'C')
+			game->col_count--;
 		game->map[game->p_y][game->p_x] = '0';
 		game->map[game->p_y + d_y][game->p_x + d_x] = 'P';
 		game->p_y = game->p_y + d_y;
 		game->p_x = game->p_x + d_x;
 		place_pic(game);
+		// steps_str = ft_itoa(game->steps);
+		// mlx_string_put(game->mlx, game->win, 10, 10, 0x0000FF00, steps_str);
+		// free(steps_str);
 	}
 }

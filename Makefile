@@ -2,11 +2,12 @@ NAME = so_long
 
 HEADER = so_long.h
 
-SRC =	ft_main.c\
-		utils_lib.c\
+SRC =	main.c\
+		map_check_adds.c\
 		map_check.c\
 		init.c\
-
+		init_adds.c\
+		
 LIBFT = ./libft/libft.a
 
 LIB_BINARY = -L ./libft -lft 

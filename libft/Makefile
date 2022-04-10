@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nbenjami <nbenjami@student.21-school.ru    +#+  +:+       +#+         #
+#    By: nbenjami <nbenjami@student.21-school.ru>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/11 20:46:31 by nbenjami          #+#    #+#              #
-#    Updated: 2021/10/26 22:04:18 by nbenjami         ###   ########.fr        #
+#    Updated: 2022/04/10 19:27:09 by nbenjami         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ LIST =		ft_isalpha.c\
 			ft_strtrim.c\
 			ft_strjoin.c\
 			ft_split.c\
+			ft_error.c\
 
 OBJ = $(patsubst %.c, %.o,$(LIST))
 

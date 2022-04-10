@@ -32,6 +32,7 @@ typedef struct s_struct{
     int		map_height;
 	int		map_width;
 	int		col_count;
+	int		e_count;
 	int		p_y;
 	int		p_x;
 	int	steps;
@@ -40,25 +41,28 @@ typedef struct s_struct{
 	t_img	player;
 	t_img	exit;
 	t_img	col;
+	t_img	b_enemy;
 }		t_struct;
 
-int main(int argc, char **argv);
-char	*get_next_line(int fd);
-int	ft_height_check(char *map, t_struct *game);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_error(void);
-int	ft_line_ok(char *line);
-void	create_box(int type, int *counter, int *item);
-int	*get_map_line(char *line, t_struct *game, int c);
-int	ft_map_check(char *map, t_struct *game);
-void	distribution(t_struct *game);
+int		main(int argc, char **argv);
+int		ft_height_check(char *map, t_struct *game);
+int		ft_line_ok(char *line);
+int		ft_map_check(char *map, t_struct *game);
+void	ft_distribution(t_struct *game);
 void	ft_check_name(char *map);
-char *ft_collect_map(int fd, char *line);
-int	ft_width_check(t_struct *game);
-int	ft_exit(char *str);
-void place_pic(t_struct *game);
-int	check_key(int key, t_struct *game);
-void	check_player(t_struct *game);
-void move(t_struct *game, int d_x, int d_y);
+char	*ft_collect_map(int fd, char *line);
+int		ft_width_check(t_struct *game);
+int		ft_exit(char *str);
+void	ft_place_pic(t_struct *game);
+int		ft_check_key(int key, t_struct *game);
+void	ft_check_player(t_struct *game);
+void	ft_move(t_struct *game, int d_x, int d_y);
+void	ft_check_key1(int key, t_struct *game);
+void	ft_draw(t_struct *game, int x, int y);
+void    ft_check_E(t_struct *game);
+void    ft_check_walls(t_struct *game);
+void    ft_loose(t_struct *game);
+void	ft_keys(int key, t_struct *game);
+int	ft_end(int keycode, t_struct *game);
 
 #endif

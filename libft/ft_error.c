@@ -1,35 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbenjami <nbenjami@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/25 19:41:47 by nbenjami          #+#    #+#             */
-/*   Updated: 2022/04/10 21:32:39 by nbenjami         ###   ########.fr       */
+/*   Created: 2022/04/10 19:24:53 by nbenjami          #+#    #+#             */
+/*   Updated: 2022/04/10 19:27:19 by nbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+void	ft_error(void)
 {
-	ft_putstr_fd("Step ", 1);
-	if (n == -2147483648)
-	{
-		write (fd, "-2147483648", 11);
-	}
-	else if (n < 0)
-	{
-		ft_putchar_fd('-', fd);
-		ft_putnbr_fd(n * (-1), fd);
-	}
-	else if (n >= 10)
-	{
-		ft_putnbr_fd(n / 10, fd);
-		ft_putchar_fd(n % 10 + '0', fd);
-	}
-	else
-		ft_putchar_fd(n + 48, fd);
-	ft_putchar_fd('\n', 1);
+	write(1, "Error\n", 7);
+	exit(1);
 }

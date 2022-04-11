@@ -6,7 +6,7 @@
 /*   By: nbenjami <nbenjami@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 19:28:58 by nbenjami          #+#    #+#             */
-/*   Updated: 2022/04/11 01:38:47 by nbenjami         ###   ########.fr       */
+/*   Updated: 2022/04/11 19:36:53 by nbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,73 +76,32 @@ void	ft_draw(t_struct *game, int x, int y)
 
 int	ft_check_key(int key, t_struct *game)
 {
-	char	*steps_str;
-
 	if (key == D)
-	{
 		ft_move(game, 1, 0);
-		game->steps++;
-		ft_putnbr_fd(game->steps, 1);
-	}
 	if (key == S)
-	{
 		ft_move(game, 0, 1);
-		game->steps++;
-		ft_putnbr_fd(game->steps, 1);
-	}
-	else
-		ft_check_key1(key, game);
-	// ft_keys(key, game);
-	steps_str = ft_itoa(game->steps);
-	mlx_string_put(game->mlx, game->win, 65, 65, 0x00FF0000, steps_str);
-	free(steps_str);
+	if (key == A)
+		ft_move(game, -1, 0);
+	if (key == W)
+		ft_move(game, 0, -1);
+	if (key == ESC)
+		exit (1);
 	return (1);
 }
 
-void	ft_check_key1(int key, t_struct *game)
+void	ft_counter(t_struct *game)
 {
-	if (key == A)
-	{
-		ft_move(game, -1, 0);
-		game->steps++;
-		ft_putnbr_fd(game->steps, 1);
-	}
-	if (key == W)
-	{
-		ft_move(game, 0, -1);
-		game->steps++;
-		ft_putnbr_fd(game->steps, 1);
-	}
-	if (key == ESC)
-		exit (1);
-}
+	char	*steps_str;
 
-// void	ft_keys(int key, t_struct *game)
-// {
-// 	if (key == D)
-// 	{
-// 		ft_move(game, 1, 0);
-// 		game->steps++;
-// 		ft_putnbr_fd(game->steps, 1);
-// 	}
-// 	if (key == S)
-// 	{
-// 		ft_move(game, 0, 1);
-// 		game->steps++;
-// 		ft_putnbr_fd(game->steps, 1);
-// 	}
-// 	if (key == A)
-// 	{
-// 		ft_move(game, -1, 0);
-// 		game->steps++;
-// 		ft_putnbr_fd(game->steps, 1);
-// 	}
-// 	if (key == W)
-// 	{
-// 		ft_move(game, 0, -1);
-// 		game->steps++;
-// 		ft_putnbr_fd(game->steps, 1);
-// 	}
-// 	if (key == ESC)
-// 		exit (1);
-// }
+	if (game->b_flag == 1)
+	{
+		steps_str = ft_itoa(game->steps);
+		mlx_string_put(game->mlx, game->win, 65, 65, 0x00FF0000, steps_str);
+		free(steps_str);
+	}
+	else
+	{
+		ft_putnbr_fd(game->steps, 1);
+		ft_putchar_fd('\n', 1);
+	}
+}

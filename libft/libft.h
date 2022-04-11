@@ -6,7 +6,7 @@
 /*   By: nbenjami <nbenjami@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 17:01:10 by nbenjami          #+#    #+#             */
-/*   Updated: 2022/04/11 01:42:44 by nbenjami         ###   ########.fr       */
+/*   Updated: 2022/04/11 17:13:11 by nbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ char	*ft_strtrim(const char *s1, const char *set);
 char	*ft_strjoin(char *s1, char *s2);
 char	**ft_split(char const *s, char c);
 void	ft_error(void);
+char	**ft_free(char **res);
 
 #endif

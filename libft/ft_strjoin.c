@@ -6,7 +6,7 @@
 /*   By: nbenjami <nbenjami@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 19:18:50 by nbenjami          #+#    #+#             */
-/*   Updated: 2022/04/06 20:11:08 by nbenjami         ###   ########.fr       */
+/*   Updated: 2022/04/11 17:17:25 by nbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	if (!s2)
 		return (NULL);
-	s3 = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));//sega here
-	// write(1, "SEGAAA", 5);
+	s3 = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (!s3)
 		return (NULL);
 	i = 0;

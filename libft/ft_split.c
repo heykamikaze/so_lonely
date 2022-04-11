@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbenjami <nbenjami@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: nbenjami <nbenjami@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 17:33:43 by nbenjami          #+#    #+#             */
-/*   Updated: 2021/10/26 22:20:46 by nbenjami         ###   ########.fr       */
+/*   Updated: 2022/04/11 17:13:04 by nbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static size_t	ft_number(const char *s, char c)
 	return (n);
 }
 
-static char	**ft_free(char **res)
+char	**ft_free(char **res)
 {
 	size_t	i;
 

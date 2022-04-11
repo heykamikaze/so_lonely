@@ -6,7 +6,7 @@
 /*   By: nbenjami <nbenjami@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 19:41:47 by nbenjami          #+#    #+#             */
-/*   Updated: 2022/04/10 21:32:39 by nbenjami         ###   ########.fr       */
+/*   Updated: 2022/04/11 17:43:11 by nbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	ft_putstr_fd("Step ", 1);
 	if (n == -2147483648)
 	{
 		write (fd, "-2147483648", 11);
@@ -31,5 +30,4 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 	else
 		ft_putchar_fd(n + 48, fd);
-	ft_putchar_fd('\n', 1);
 }

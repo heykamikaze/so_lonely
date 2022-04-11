@@ -6,7 +6,7 @@
 /*   By: nbenjami <nbenjami@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 19:16:46 by nbenjami          #+#    #+#             */
-/*   Updated: 2022/04/10 21:37:57 by nbenjami         ###   ########.fr       */
+/*   Updated: 2022/04/11 17:58:45 by nbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	ft_check_player(t_struct *game)
 		}
 		i++;
 	}
-	if (count_p != 1)
+	if (count_p != 1 || game->col_count < 1)
 		ft_error();
 }
 
@@ -111,6 +111,7 @@ int	ft_height_check(char *line, t_struct *game)
 	j = 0;
 	checked = ft_strtrim(line, "\n");
 	free(line);
+	game->line = checked;
 	while (checked[i])
 	{
 		if (checked[i] == '\n')

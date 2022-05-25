@@ -6,7 +6,7 @@
 /*   By: nbenjami <nbenjami@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 19:23:43 by nbenjami          #+#    #+#             */
-/*   Updated: 2022/04/11 19:39:36 by nbenjami         ###   ########.fr       */
+/*   Updated: 2022/04/12 19:39:13 by nbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_map_check(char *map, t_struct *game)
 	ft_height_check(game->line, game);
 	game->map_width = ft_width_check(game);
 	ft_check_player(game);
-	ft_check_E(game);
+	ft_check_e(game);
 	ft_check_walls(game);
 	while (game->map[++i])
 	{
@@ -98,9 +98,9 @@ void	ft_check_e(t_struct *game)
 		ft_error();
 }
 
-void    ft_check_walls(t_struct *game)
+void	ft_check_walls(t_struct *game)
 {
-    int	i;
+	int	i;
 	int	j;
 
 	i = 0;

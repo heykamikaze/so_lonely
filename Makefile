@@ -6,7 +6,7 @@ SRC =	main.c\
 		map_check_adds.c\
 		map_check.c\
 		init.c\
-		init_adds.c\
+		enemy.c \
 		
 LIBFT = ./libft/libft.a
 
@@ -18,7 +18,7 @@ OBJ = ${SRC:.c=.o}
 
 CC		= gcc
 
-CFLAGS	= -Wall -Wextra -Werror
+# CFLAGS	= -Wall -Wextra -Werror
 
 MFLAGS = -framework OpenGL -framework AppKit
 

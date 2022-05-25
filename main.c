@@ -6,7 +6,7 @@
 /*   By: nbenjami <nbenjami@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 19:13:05 by nbenjami          #+#    #+#             */
-/*   Updated: 2022/04/11 17:52:51 by nbenjami         ###   ########.fr       */
+/*   Updated: 2022/05/26 00:39:31 by nbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	main(int argc, char **argv)
 	if (!game)
 		exit(EXIT_FAILURE);
 	game->b_flag = 0;
+	game->d_flag = 0;
 	ft_map_check(argv[1], game);
 	game->mlx = mlx_init();
 	ft_distribution(game);
@@ -40,5 +41,6 @@ int	main(int argc, char **argv)
 	ft_place_pic(game);
 	mlx_hook(game->win, 17, 0, ft_exit, game);
 	mlx_hook(game->win, 2, 1L << 0, ft_check_key, game);
+	mlx_loop_hook(game->mlx, ft_render_enemy, game);
 	mlx_loop(game->mlx);
 }

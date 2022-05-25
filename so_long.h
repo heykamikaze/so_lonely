@@ -9,7 +9,6 @@
 # include <unistd.h>
 # include <stdio.h>
 # include "libft/libft.h"
-# define MAX "./pics/threat.xpm"
 # define BUFFER_SIZE 1
 # define D 2
 # define A 0
@@ -35,9 +34,12 @@ typedef struct s_struct{
 	int		e_count;
 	int		p_y;
 	int		p_x;
-	int	steps;
-	int	b_flag;
-	char *line;
+	int		by;
+	int		bx;
+	int		steps;
+	int		b_flag;
+	int		d_flag;
+	char	*line;
     t_img	wall;
 	t_img	floor;
 	t_img	player;
@@ -54,16 +56,21 @@ void	ft_distribution(t_struct *game);
 void	ft_check_name(char *map);
 char	*ft_collect_map(int fd, char *line);
 int		ft_width_check(t_struct *game);
-int	ft_exit(t_struct *game);
+int		ft_exit(t_struct *game);
 void	ft_place_pic(t_struct *game);
 int		ft_check_key(int key, t_struct *game);
 void	ft_check_player(t_struct *game);
 void	ft_move(t_struct *game, int d_x, int d_y);
 void	ft_check_key1(int key, t_struct *game);
 void	ft_draw(t_struct *game, int x, int y);
-void    ft_check_E(t_struct *game);
+void    ft_check_e(t_struct *game);
 void    ft_check_walls(t_struct *game);
 void	ft_keys(int key, t_struct *game);
 void	ft_counter(t_struct *game);
+int 	ft_render_enemy(t_struct *game);
+void	draw_enemy1(t_struct *game, char *sprite, int sign);
+void	draw_enemy(t_struct *game);
+void	get_pos(t_struct *game, char c);
+
 
 #endif

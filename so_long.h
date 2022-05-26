@@ -70,7 +70,7 @@ void	ft_counter(t_struct *game);
 int 	ft_render_enemy(t_struct *game);
 void	draw_enemy1(t_struct *game, char *sprite, int sign);
 void	draw_enemy(t_struct *game);
-void	get_pos(t_struct *game, char c);
+void	get_pos(t_struct *game, char c, int y);
 
 
 #endif

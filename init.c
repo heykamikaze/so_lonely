@@ -6,7 +6,7 @@
 /*   By: nbenjami <nbenjami@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 19:28:58 by nbenjami          #+#    #+#             */
-/*   Updated: 2022/05/26 00:37:40 by nbenjami         ###   ########.fr       */
+/*   Updated: 2022/05/27 16:54:26 by nbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_distribution(t_struct *game)
 	game->b_enemy.img = mlx_xpm_file_to_image(game->mlx, \
 	game->b_enemy.path, &game->b_enemy.width, &game->b_enemy.height);
 	game->steps = 0;
+	ft_rights_check(game);
 }
 
 void	ft_place_pic(t_struct *game)

@@ -6,39 +6,18 @@
 /*   By: nbenjami <nbenjami@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 23:14:01 by nbenjami          #+#    #+#             */
-/*   Updated: 2022/05/26 20:54:38 by nbenjami         ###   ########.fr       */
+/*   Updated: 2022/05/27 16:51:33 by nbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// void	get_pos(t_struct *game, char c, int y)
-// {
-// 	int	x;
-
-// 	while ((game->map)[y])
-// 	{
-// 		x = 0;
-// 		while (game->map[y][x] && game->map[y][x] != c)
-// 			x++;
-// 		if (game->map[y][x])
-// 			break ;
-// 		y++;
-// 	}
-// 	if (game->map[y] && game->map[y][x] == c)
-// 	{
-// 		game->bx = x;
-// 		game->by = y;
-// 	}
-// }
-
-void	draw_enemy1(t_struct *game, char *sprite, int sign)
+void	ft_draw_enemy1(t_struct *game, char *sprite, int sign)
 {
 	int	y;
-	int x;
+	int	x;
 
 	y = 0;
-	x = 0;
 	while ((game->map)[y])
 	{
 		x = 0;
@@ -60,24 +39,24 @@ void	draw_enemy1(t_struct *game, char *sprite, int sign)
 	}
 }
 
-void	draw_enemy(t_struct *game)
+void	ft_draw_enemy(t_struct *game)
 {
 	static int	acc = -60;
 	char		*steps;
 
 	steps = ft_itoa(game->steps);
 	if (acc == -90)
-		draw_enemy1(game, "./pics/b_enemy.xpm", -1);
+		ft_draw_enemy1(game, "./pics/b_enemy.xpm", -1);
 	if (acc == -60)
-		draw_enemy1(game, "./pics/player.xpm", -1);
+		ft_draw_enemy1(game, "./pics/player.xpm", -1);
 	if (acc == -30)
-		draw_enemy1(game, "./pics/b_enemy.xpm", -1);
+		ft_draw_enemy1(game, "./pics/b_enemy.xpm", -1);
 	if (acc == 0)
-		draw_enemy1(game, "./pics/player.xpm", 1);
+		ft_draw_enemy1(game, "./pics/player.xpm", 1);
 	if (acc == 30)
-		draw_enemy1(game, "./pics/b_enemy.xpm", 1);
+		ft_draw_enemy1(game, "./pics/b_enemy.xpm", 1);
 	if (acc == 60)
-		draw_enemy1(game, "./pics/player.xpm", 1);
+		ft_draw_enemy1(game, "./pics/player.xpm", 1);
 	acc++;
 	if (acc > 90)
 		acc = -90;
@@ -86,12 +65,12 @@ void	draw_enemy(t_struct *game)
 	free(steps);
 }
 
-int ft_render_enemy(t_struct *game)
+int	ft_render_enemy(t_struct *game)
 {
-    char		*steps;
+	char	*steps;
 
 	if (game->b_flag == 1)
-		draw_enemy(game);
+		ft_draw_enemy(game);
 	else
 	{
 		steps = ft_itoa(game->steps);
@@ -99,5 +78,21 @@ int ft_render_enemy(t_struct *game)
 		mlx_string_put(game->mlx, game->win, 0, 0, 0x00FF0000, steps);
 		free(steps);
 	}
+	ft_counter(game);
 	return (1);
+}
+
+void	ft_rights_check(t_struct *game)
+{
+	if (!mlx_xpm_file_to_image(game->mlx, \
+	game->wall.path, &game->wall.width, &game->wall.height)
+		|| !mlx_xpm_file_to_image(game->mlx, \
+	game->floor.path, &game->floor.width, &game->floor.height)
+		|| !mlx_xpm_file_to_image(game->mlx, \
+	game->player.path, &game->player.width, &game->player.height)
+		|| !mlx_xpm_file_to_image(game->mlx, \
+	game->exit.path, &game->exit.width, &game->exit.height)
+		|| !mlx_xpm_file_to_image(game->mlx, \
+	game->b_enemy.path, &game->b_enemy.width, &game->b_enemy.height))
+		ft_error();
 }

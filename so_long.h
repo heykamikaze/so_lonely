@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nbenjami <nbenjami@student.21-school.ru>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/27 15:49:01 by nbenjami          #+#    #+#             */
+/*   Updated: 2022/05/27 17:00:42 by nbenjami         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
-
 
 # include "mlx/mlx.h"
 # include <fcntl.h>
@@ -25,10 +36,10 @@ typedef struct s_img {
 
 typedef struct s_struct{
 	char	**map;
-    void	*mlx;
+	void	*mlx;
 	void	*win;
-    int		**map_i;
-    int		map_height;
+	int		**map_i;
+	int		map_height;
 	int		map_width;
 	int		col_count;
 	int		e_count;
@@ -40,7 +51,7 @@ typedef struct s_struct{
 	int		b_flag;
 	int		d_flag;
 	char	*line;
-    t_img	wall;
+	t_img	wall;
 	t_img	floor;
 	t_img	player;
 	t_img	exit;
@@ -63,14 +74,14 @@ void	ft_check_player(t_struct *game);
 void	ft_move(t_struct *game, int d_x, int d_y);
 void	ft_check_key1(int key, t_struct *game);
 void	ft_draw(t_struct *game, int x, int y);
-void    ft_check_e(t_struct *game);
-void    ft_check_walls(t_struct *game);
+void	ft_check_e(t_struct *game);
+void	ft_check_walls(t_struct *game);
 void	ft_keys(int key, t_struct *game);
 void	ft_counter(t_struct *game);
-int 	ft_render_enemy(t_struct *game);
-void	draw_enemy1(t_struct *game, char *sprite, int sign);
-void	draw_enemy(t_struct *game);
-void	get_pos(t_struct *game, char c, int y);
-
+int		ft_render_enemy(t_struct *game);
+void	ft_draw_enemy1(t_struct *game, char *sprite, int sign);
+void	ft_draw_enemy(t_struct *game);
+void	ft_rights_check(t_struct *game);
+void	ft_screen(t_struct *game);
 
 #endif

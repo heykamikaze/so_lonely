@@ -6,7 +6,7 @@
 /*   By: nbenjami <nbenjami@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 19:16:46 by nbenjami          #+#    #+#             */
-/*   Updated: 2022/04/11 17:58:45 by nbenjami         ###   ########.fr       */
+/*   Updated: 2022/05/27 17:09:23 by nbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,19 @@ char	*ft_collect_map(int fd, char *line)
 		if (rd == -1)
 		{
 			if (line)
+			{
 				free (line);
-			return (NULL);
+				ft_error();
+				return (NULL);
+			}
 		}
 		readed[rd] = '\0';
 		line = ft_strjoin(line, readed);
 		if (!line)
+		{
+			ft_error();
 			return (NULL);
+		}
 	}
 	return (line);
 }

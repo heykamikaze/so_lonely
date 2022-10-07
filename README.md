@@ -10,6 +10,8 @@ Enjoy!
 Выход: Esc/touch an enemy (Fail)
 Запуск:
 `make`
+
+
 `./so_long maps/map_mirage.ber`
 
 ![gif](https://github.com/heykamikaze/so_lonely/blob/skool/ezgif.com-gif-maker.gif)

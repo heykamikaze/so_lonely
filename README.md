@@ -6,9 +6,17 @@
 Enjoy!
 
 Графический проект с 2D графикой на языке С с использованием библиотеки [MLX42](https://github.com/codam-coding-college/MLX42) 
+
+
 Управление: AWSD
+
+
 Выход: Esc/touch an enemy (Fail)
+
+
 Запуск:
+
+
 `make`
 
 
